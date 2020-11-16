@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <random>
 
 using namespace std;
 
@@ -76,21 +77,17 @@ void generateSer(int (&serviceTime)[10]) {
 void generateArr(int (&arrivalTime)[10]) {
     system("cls");
     gotoxy(0, 5);
-    for (int i = 0; i < 10; i++) {
-        if (i == 0) {
-            arrivalTime[i] = 0;
-            cout << "ARRIVAL TIME OF CUSTMER 1 IS " << 0 << endl;
-        }
-        else {
-            if (i % 2 == 0) {
-                arrivalTime[i] = (5 * i - 4);
-                cout << "ARRIVAL TIME OF CUSTMER " << i + 1 << " is " << (5 * i - 4) << endl;
-            }
-            else {
-                arrivalTime[i] = (4 * i + 1);
-                cout << "ARRIVAL TIME OF CUSTMER " << i + 1 << " is " << (4 * i + 1) << endl;
-            }
-        }
+    random_device rd;
+    default_random_engine generator(rd());
+    uniform_int_distribution<int> distribution(1, 10);
+    arrivalTime[0] = 0;
+    cout << "ARRIVAL TIME FOR CUSTOMER 1 IS : " << arrivalTime[0] << endl;
+    delay(1000);
+    for (int i = 1; i < 10; i++) {
+        int temp = distribution(generator);
+        arrivalTime[i] = arrivalTime[i - 1] + temp;
+        distribution.reset();
+        cout << "ARRIVAL TIME FOR CUSTOMER " << i + 1 << " IS : " << arrivalTime[i] << endl;
         delay(1000);
     }
     cout << endl << endl;
