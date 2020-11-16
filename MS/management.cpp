@@ -11,7 +11,6 @@ class item
    int itemNo;
    char itemName[50];
    float itemPrice;
-
    public:
 	    void createItem()
 	    {
@@ -22,7 +21,7 @@ class item
            cin>>itemNo;
            cout<<"\n\t # Enter the item price here : ";
            cin>>itemPrice;
-           delay(1000);
+
 	       cout<<"\n\t ITEM ADDED SUCCESSFULLY. ";
 	    }
 	    void showItem()
@@ -64,32 +63,35 @@ class customer
 {
    int custNo;
    char custName[20];
+   float amount;
 
    public:
 	    void createCustomer()
 	    {
 	       cout<<"\n\t # NEW CUSTOMER ENTRY : ";
-	       cout<<"\n\t # Enter customer's no here : ";
+	       cout<<"\n\t # Enter customer's no here :- ";
 		   cin>>custNo;
-	       cout<<"\n\t # Enter customer's name here : ";
+	       cout<<"\n\t # Enter customer's name here :- ";
            cin>>custName;
-           delay(1000);
+
 	       cout<<"\n\t CUSTOMER RECORD CREATED. ";
 	    }
 	    void showCustomer()
 	    {
 	       cout<<"\n\t # CUSTOMER'S DETAILS ARE : ";
-	       cout<<"\n\t # Customer's no. : ";
+	       cout<<"\n\t # Customer's no. :- ";
 		   cout<<custNo;
-	       cout<<"\n\t # Customer's name : ";
+	       cout<<"\n\t # Customer's name :- ";
            puts(custName);
+
 	    }
 	    void modifyCustomer()
 	    {
-           cout<<"\n\t # Customer's no. : ";
+           cout<<"\n\t # Customer's no. :- ";
 		   cout<<custNo;
-           cout<<"\n\t # Modify the customer's name here : ";
+           cout<<"\n\t # Modify customer's name here :- ";
            cin>>custName;
+
 	    }
 	    int returnCustNo()
 	    {
@@ -352,10 +354,26 @@ void displayAllItem()
 void placeOrder()
 {
    system("cls");
-   int ch,amount;
+   int ch,no,amount;
    char a;
    amount=0;
    displayAllItem();
+   cout<<"\n\t Enter the customer no. here :- ";
+   cin>>no;
+   int flag1=0;
+   f1.open("customer.dat",ios::in);
+   while(f1.read((char*)&c,sizeof c))
+   {
+      if((c.returnCustNo())==no)
+      {
+	    c.showCustomer();
+	    flag1=1;
+      }
+   }
+   f1.close();
+   if(flag1==0)
+    cout<<"\n\t Customer does not exist. ";
+   else {
    cout<<"\n\t # ORDER INVOICE :";
    do
    {
@@ -379,6 +397,7 @@ void placeOrder()
    }while(a=='y'|| a=='Y');
    cout<<"\n\t Total Bill :- ";
    cout<<amount;
+   }
 }
 //***********************************************************************
 //                         INTRO FUNCTION
@@ -387,8 +406,8 @@ void intro()
 {
    system("cls");
    gotoxy(35,11);
-   cout<<"\n\t RESTAURANT ";
-   gotoxy(35,13);
+   cout<<"\n\t RESTAURANT MANAGEMENT SIMULATION";
+   gotoxy(35,20);
    cout<<"\n\t SYSTEM ";
    cout<<"\n\t Made by : Utkarsh Jain ";
    cout<<"\n\t Made by : Shubhang Jyotirmay ";
@@ -405,8 +424,8 @@ void admin_menu()
    cout<<"\n\t 1.Create customer record ";
    cout<<"\n\t 2.Display all customer record ";
    cout<<"\n\t 3.Display specific customer record ";
-   cout<<"\n\t 4.modify customer record ";
-   cout<<"\n\t 5.delete customer record ";
+   cout<<"\n\t 4.Modify customer record ";
+   cout<<"\n\t 5.Delete customer record ";
    cout<<"\n\t 6.Create item ";
    cout<<"\n\t 7.Display all items ";
    cout<<"\n\t 8.Display specific item ";
