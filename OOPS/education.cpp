@@ -2,18 +2,14 @@
 #include<iostream>
 #include<fstream>
 #include<conio.h>
-#include<cstdio>
+#include<stdio.h>
+#include<process.h>
+#include<string.h>
 #include<iomanip>
+#include<cstdio>
+
 
 using namespace std;
-
-COORD coord= {0,0};
-void gotoxy(int x,int y)
-{
-    coord.X=x;
-    coord.Y=y;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),coord);
-}
 
 class school
 {
@@ -34,13 +30,12 @@ class school
 		othStaff=0;
 		totalSeats=0;
 		strcpy(isBookStore,"NULL");
-	}	
+	}
 	void createSchool();
         void showSchool();
         void modifySchool();
 	int returnSchoolCode();
         void report();
-	~school();
 };
 void school::createSchool()
 {
@@ -124,7 +119,6 @@ class college
         void modifyCollege();
 	int returnCollegeCode();
 	void report();
-	~college();
 };
 void college::createCollege()
 {
@@ -178,7 +172,7 @@ void college::report()
     cout<<professors<<setw(15)<<othStaff<<setw(15)<<isBookStore<<endl;
 }
 
-fstream f1,f2;
+fstream ef1,ef2;
 school s;
 college c;
 //*********************************************************************
@@ -188,28 +182,28 @@ college c;
 void writeSchool()
 {
    char ch;
-   f1.open("school.dat",ios::out|ios::app);
+   ef1.open("school.dat",ios::out|ios::app);
    do
    {  system("cls");
       s.createSchool();
-      f1.write((char*)&s,sizeof s);
+      ef1.write((char*)&s,sizeof s);
       cout<<"\n\n\t Do you want to add more record ? (y/n?) : ";
       cin>>ch;
    }while(ch=='y'||ch=='Y');
-   f1.close();
+   ef1.close();
 }
  void writeCollege()
 {
    char ch;
-   f1.open("college.dat",ios::out|ios::app);
+   ef1.open("college.dat",ios::out|ios::app);
    do
    {
       c.createCollege();
-      f1.write((char*)&c,sizeof c);
+      ef1.write((char*)&c,sizeof c);
       cout<<"\n\n\t Do you want to add more record ? (y/n?) : ";
        cin>>ch;
    }while(ch=='y'||ch=='Y');
-   f1.close();
+   ef1.close();
 }
 //************************************************************************
 //                FUNCTION TO READ SPECIFIC RECORD FROM FILE
@@ -222,8 +216,8 @@ void displaySchoolDetails()
    cout<<"\n\t # Please enter the school code :- ";
    cin>>num;
    int flag=0;
-   f1.open("school.dat",ios::in);
-   while(f1.read((char*)&s,sizeof s))
+   ef1.open("school.dat",ios::in);
+   while(ef1.read((char*)&s,sizeof s))
    {
       if((s.returnSchoolCode())==num)
       {
@@ -231,7 +225,7 @@ void displaySchoolDetails()
 	 flag=1;
       }
    }
-   f1.close();
+   ef1.close();
    if(flag==0)
     cout<<"\n\t School does not exist. ";
     getch();
@@ -239,8 +233,8 @@ void displaySchoolDetails()
 void displayCollegeDetails(int n)
 {
    int flag=0;
-   f1.open("college.dat",ios::in);
-   while(f1.read((char*)&c,sizeof c))
+   ef1.open("college.dat",ios::in);
+   while(ef1.read((char*)&c,sizeof c))
    {
       if((c.returnCollegeCode())==n)
       {
@@ -248,7 +242,7 @@ void displayCollegeDetails(int n)
 	 flag=1;
       }
    }
-   f1.close();
+   ef1.close();
    if(flag==0)
     cout<<"\n\t College does not exist. ";
     getch();
@@ -265,8 +259,8 @@ void modifySchool()
    cout<<"\n\t # MODIFY SCHOOL RECORD ";
    cout<<"\n\t # Enter the school code here : ";
     cin>>n;
-   f1.open("school.dat",ios::in|ios::out);
-   while(f1.read((char*)&s,sizeof s) && found==0)
+   ef1.open("school.dat",ios::in|ios::out);
+   while(ef1.read((char*)&s,sizeof s) && found==0)
    {
       if((s.returnSchoolCode())==n)
       {
@@ -274,13 +268,13 @@ void modifySchool()
 	 cout<<"\n\t # Enter the new school details here : ";
 	 s.modifySchool();
 	 int pos=-1*sizeof(s);
-	 f1.seekp(pos,ios::cur);
-	 f1.write((char*)&s,sizeof s);
+	 ef1.seekp(pos,ios::cur);
+	 ef1.write((char*)&s,sizeof s);
 	 cout<<"\n\t Record updated. ";
 	 found=1;
       }
    }
-   f1.close();
+   ef1.close();
    if(found==0)
     cout<<"\n\t School Record not found. ";
     getch();
@@ -294,8 +288,8 @@ void modifyCollege()
    cout<<"\n\t # MODIFY COLLEGE RECORD ";
    cout<<"\n\t # Enter the college code here :- ";
     cin>>n;
-   f1.open("college.dat",ios::in|ios::out);
-   while(f1.read((char*)&c,sizeof c) && found==0)
+   ef1.open("college.dat",ios::in|ios::out);
+   while(ef1.read((char*)&c,sizeof c) && found==0)
    {
       if((c.returnCollegeCode())==n)
       {
@@ -303,13 +297,13 @@ void modifyCollege()
 	 cout<<"\n\t # Enter the new details of college here : ";
 	 c.modifyCollege();
 	 int pos=-1*sizeof(c);
-	 f1.seekp(pos,ios::cur);
-	 f1.write((char*)&c,sizeof c);
+	 ef1.seekp(pos,ios::cur);
+	 ef1.write((char*)&c,sizeof c);
 	 cout<<"\n\t Record updated. ";
 	 found=1;
       }
    }
-   f1.close();
+   ef1.close();
    if(found==0)
     cout<<"\n\t College does not exist. ";
     getch();
@@ -324,19 +318,19 @@ void deleteSchool()
    cout<<"\n\t # DELETE SCHOOL ";
    cout<<"\n\t # Enter the school code of the school you want to delete :";
     cin>>n;
-   f1.open("school.dat",ios::in|ios::out);
+   ef1.open("school.dat",ios::in|ios::out);
    fstream f2;
-   f2.open("temp.dat",ios::out);
-   f1.seekg(0,ios::beg);
-   while(f1.read((char*)&s,sizeof s))
+   ef2.open("temp.dat",ios::out);
+   ef1.seekg(0,ios::beg);
+   while(ef1.read((char*)&s,sizeof s))
    {
       if((s.returnSchoolCode())!=n)
       {
-	 f2.write((char*)&s,sizeof s);
+	 ef2.write((char*)&s,sizeof s);
       }
    }
-   f2.close();
-   f1.close();
+   ef2.close();
+   ef1.close();
    remove("school.dat");
    rename("temp.dat","school.dat");
 
@@ -352,11 +346,11 @@ void deleteCollege()
    cout<<"\n\t # DELETE COLLEGE RECORD ";
    cout<<"\n\t # Enter the college whose record you want to delete :";
     cin>>n;
-   f1.open("college.dat",ios::out|ios::in);
+   ef1.open("college.dat",ios::out|ios::in);
    fstream f2;
    f2.open("temp.dat",ios::out);
-   f1.seekg(0,ios::beg);
-   while(f1.read((char*)&c,sizeof c))
+   ef1.seekg(0,ios::beg);
+   while(ef1.read((char*)&c,sizeof c))
    {
       if((c.returnCollegeCode())!=n)
       {
@@ -366,7 +360,7 @@ void deleteCollege()
 	 flag=1;
    }
    f2.close();
-   f1.close();
+   ef1.close();
    remove("college.dat");
    rename("temp.dat","college.dat");
    if(flag==1)
@@ -381,8 +375,8 @@ void deleteCollege()
 void displayAllCollege()
 {
    system("cls");
-   f1.open("college.dat",ios::in);
-   if(!f1)
+   ef1.open("college.dat",ios::in);
+   if(!ef1)
    {
       cout<<"\n\t ERROR!!! Unable to open file. ";
       return;
@@ -391,11 +385,11 @@ void displayAllCollege()
    cout<<"\n\t =============================================================================================================";
    cout<<"\n\t College Code"<<setw(15)<<"College Name"<<setw(15)<<"Total Seats"<<setw(15)<<"Students"<<setw(15)<<"Professors"<<setw(15)<<"Other Staff"<<setw(15)<<"Book Store";
    cout<<"\n\t =============================================================================================================";
-   while(f1.read((char*)&c,sizeof c))
+   while(ef1.read((char*)&c,sizeof c))
    {
       c.report();
    }
-   f1.close();
+   ef1.close();
    getch();
 }
 //***********************************************************************
@@ -404,8 +398,8 @@ void displayAllCollege()
 void displayAllSchool()
 {
    system("cls");
-   f1.open("school.dat",ios::in);
-   if(!f1)
+   ef1.open("school.dat",ios::in);
+   if(!ef1)
    {
       cout<<"\n\t ERROR!!! Unable to open file. ";
       return;
@@ -414,18 +408,18 @@ void displayAllSchool()
    cout<<"\n\t =========================================================================================================";
    cout<<"\n\t School Code"<<setw(15)<<"School Name"<<setw(15)<<"Total Seats"<<setw(15)<<"Students"<<setw(15)<<"Teachers"<<setw(15)<<"Other Staff"<<setw(15)<<"Book Store";
    cout<<"\n\t =========================================================================================================";
-   while(f1.read((char*)&s,sizeof s))
+   while(ef1.read((char*)&s,sizeof s))
    {
       s.report();
    }
-   f1.close();
+   ef1.close();
    getch();
 };
 
 //***********************************************************************
 //            ADMINISTRATOR MENU FUNCTION
 //***********************************************************************
-void admin_menu()
+void admin_menu_edu()
 {
    system("cls");
    int ch;
@@ -475,12 +469,12 @@ void admin_menu()
       default : cout<<"\n\t Wrong input.";
 
    }
-   admin_menu();
+   admin_menu_edu();
 }
 //***********************************************************************
 //            THE MAIN FUNCTION OF PROGRAM
 //***********************************************************************
-int main()
+int menuEdu()
 {
    int ch;
    char a;
@@ -500,7 +494,7 @@ int main()
              break;
 	 case 2: displayAllCollege();
              break;
-	 case 3: admin_menu();
+	 case 3: admin_menu_edu();
              break;
 	 case 4: exit(0);
              break;
@@ -512,6 +506,3 @@ int main()
    }while(a=='y'|| a=='Y');
    return 0;
 }
-//***********************************************************************
-//           END OF PROJECT
-//***********************************************************************
