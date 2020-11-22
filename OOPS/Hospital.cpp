@@ -112,61 +112,77 @@ void menuHSort();
 
 // class function definitions
 void hospital::getDataHosp() {
+    gotoxy(32, 5);
     cout << "Enter Hospital Name : ";
     getchar();
     fgets(hospName, 20, stdin);
+    gotoxy(32, 6);
     cout << "Enter Hospital No : ";
     cin >> hospNo;
+    gotoxy(32, 7);
     cout << "Enter Number of Doctors : ";
     cin >> doctor;
+    gotoxy(32, 8);
     cout << "Enter Number of Nurses : ";
     cin >> nurse;
+    gotoxy(32, 9);
     cout << "Enter Number of other staff : ";
     cin >> othStaff;
+    gotoxy(32, 10);
     cout << "Enter Number of current patient : ";
     cin >> currPatient;
     char a;
+    gotoxy(32, 11);
     cout << "Is there a medical store nearby?(y/n) : ";
     cin >> a;
     if (a == 'y') {
         isMedStore = true;
     }
-    cout << "Enter Departments : " << endl;
+    gotoxy(32, 12);
+    cout << "Enter Departments : ";
+    gotoxy(32, 13);
     cout << "Is there General Surgery?(y/n) : ";
     cin >> a;
     if (a == 'y') {
         genSur = true;
     }
+    gotoxy(32, 14);
     cout << "Is there Cardiology?(y/n) : ";
     cin >> a;
     if (a == 'y') {
         cardiology = true;
     }
+    gotoxy(32, 15);
     cout << "Is there ENT?(y/n) : ";
     cin >> a;
     if (a == 'y') {
         ENT = true;
     }
+    gotoxy(32, 16);
     cout << "Is there Neurology?(y/n) : ";
     cin >> a;
     if (a == 'y') {
         neurology = true;
     }
+    gotoxy(32, 17);
     cout << "Is there Orthopedics?(y/n) : ";
     cin >> a;
     if (a == 'y') {
         orthopedics = true;
     }
+    gotoxy(32, 18);
     cout << "Is there Oncology?(y/n) : ";
     cin >> a;
     if (a == 'y') {
         oncology = true;
     }
+    gotoxy(32, 19);
     cout << "Is there Physiotherapy?(y/n) : ";
     cin >> a;
     if (a == 'y') {
         physiotherapy = true;
     }
+    gotoxy(32, 20);
     cout << "Is there Urology?(y/n) : ";
     cin >> a;
     if (a == 'y') {
@@ -175,76 +191,93 @@ void hospital::getDataHosp() {
 }
 
 void hospital::showDataHosp() {
-    cout << "details of the hospital are : " << endl;
-    cout << "Name of Hospital : " << hospName << endl;
-    cout << "Hospital No : " << hospNo << endl;
-    cout << "No of doctors : " << doctor << endl;
-    cout << "No of nurses : " << nurse << endl;
-    cout << "No of other staff : " << othStaff << endl;
-    cout << "No of current patients : " << currPatient << endl;
+    gotoxy(28, 5);
+    cout << "details of the hospital are : ";
+    gotoxy(28, 6);
+    cout << "Name of Hospital : " << hospName;
+    gotoxy(28, 7);
+    cout << "Hospital No : " << hospNo;
+    gotoxy(28, 8);
+    cout << "No of doctors : " << doctor;
+    gotoxy(28, 9);
+    cout << "No of nurses : " << nurse;
+    gotoxy(28, 10);
+    cout << "No of other staff : " << othStaff;
+    gotoxy(28, 11);
+    cout << "No of current patients : " << currPatient;
+    gotoxy(28, 12);
     cout << "Medical Store nearby : ";
     if (isMedStore == true) {
-        cout << "Yes" << endl;
+        cout << "Yes";
     }
     else {
-        cout << "No" << endl;
+        cout << "No";
     }
-    cout << "Departments : " << endl;
+    gotoxy(28, 13);
+    cout << "Departments : ";
+    gotoxy(28, 14);
     cout << "General Surgery : ";
     if (genSur == true) {
-        cout << "Yes" << endl;
+        cout << "Yes";
     }
     else {
-        cout << "No" << endl;
+        cout << "No";
     }
+    gotoxy(28, 15);
     cout << "Cardiology : ";
     if (cardiology == true) {
-        cout << "Yes" << endl;
+        cout << "Yes";
     }
     else {
-        cout << "No" << endl;
+        cout << "No";
     }
+    gotoxy(28, 16);
     cout << "ENT : ";
     if (ENT == true) {
-        cout << "Yes" << endl;
+        cout << "Yes";
     }
     else {
-        cout << "No" << endl;
+        cout << "No";
     }
+    gotoxy(28, 17);
     cout << "Neurology : ";
     if (neurology == true) {
-        cout << "Yes" << endl;
+        cout << "Yes";
     }
     else {
-        cout << "No" << endl;
+        cout << "No";
     }
+    gotoxy(28, 18);
     cout << "Orthopedics : ";
     if (orthopedics == true) {
-        cout << "Yes" << endl;
+        cout << "Yes";
     }
     else {
-        cout << "No" << endl;
+        cout << "No";
     }
+    gotoxy(28, 19);
     cout << "Oncology : ";
     if (oncology == true) {
-        cout << "Yes" << endl;
+        cout << "Yes";
     }
     else {
-        cout << "No" << endl;
+        cout << "No";
     }
+    gotoxy(28, 20);
     cout << "Physiotherapy : ";
     if (physiotherapy == true) {
-        cout << "Yes" << endl;
+        cout << "Yes";
     }
     else {
-        cout << "No" << endl;
+        cout << "No";
     }
+    gotoxy(28, 21);
     cout << "Urology : ";
     if (urology == true) {
-        cout << "Yes" << endl;
+        cout << "Yes" << endl << endl;
     }
     else {
-        cout << "No" << endl;
+        cout << "No" << endl << endl;
     }
 }
 
@@ -371,13 +404,17 @@ void createHosp() {
     filout.open("hospital.dat", ios::binary | ios::out);
     char ch;
     do {
+        system("cls");
         hosp.getDataHosp();
         filout.write((char*)&hosp, sizeof(hosp));
+        gotoxy(32, 22);
         cout << "more hospitals?(y/n) : ";
         cin >> ch;
     } while (ch == 'y');
     filout.close();
-    cout << "file hospital.dat created!" << endl;
+    gotoxy(32, 24);
+    cout << "file hospital.dat created!";
+    gotoxy(32, 25);
     cout << "Press Enter to continue" << endl;
     cin.ignore();
     cin.ignore();
@@ -389,13 +426,17 @@ void addHosp() {
     fil.open("hospital.dat", ios::binary | ios::app);
     char ch;
     do {
+        system("cls");
         hosp.getDataHosp();
         fil.write((char*)&hosp, sizeof(hosp));
+        gotoxy(32, 22);
         cout << "more hospitals?(y/n) : ";
         cin >> ch;
     } while (ch == 'y');
     fil.close();
-    cout << "New hospitals successfully added!" << endl;
+    gotoxy(32, 24);
+    cout << "New hospitals successfully added!";
+    gotoxy(32, 25);
     cout << "Press Enter to continue" << endl;
     cin.ignore();
     cin.ignore();
@@ -407,13 +448,14 @@ void dispHosp() {
     filin.open("hospital.dat", ios::binary | ios::in);
     cout << "List of Hospitals : " << endl;
     while (filin.read((char*)&hosp, sizeof(hosp))) {
+        system("cls");
         hosp.showDataHosp();
         delay(2000);
+        cout << "Press Enter to continue" << endl;
+        cin.ignore();
+        cin.ignore();
     }
     filin.close();
-    cout << "Press Enter to continue" << endl;
-    cin.ignore();
-    cin.ignore();
 }
 
 void modifyHospName() {
@@ -423,27 +465,36 @@ void modifyHospName() {
     fil.open("hospital.dat", ios::binary | ios::in | ios::out);
     int id;
     char newHospName[20];
+    gotoxy(22, 5);
     cout << "Enter Hospital No whose name has to be changed : ";
     cin >> id;
     while (fil.read((char*)&hosp, sizeof(hosp))) {
         if (hosp.retHospNo() == id) {
-            cout << "Old Name : " << hosp.retHospName() << endl;
+            gotoxy(35, 7);
+            cout << "Old Name : " << hosp.retHospName();
+            gotoxy(35, 8);
             cout << "Enter new name of the hospital : ";
             getchar();
             fgets(newHospName, 20, stdin);
+            gotoxy(35, 10);
+            cout << "record is being updated...";
             hosp.changeHospName(newHospName);
             int current = fil.tellg();
             fil.seekp(current - sizeof(hosp));
             fil.write((char*)&hosp, sizeof(hosp));
-            cout << "record updated!" << endl;
+            delay(1000);
+            gotoxy(35, 12);
+            cout << "record updated!";
             flag++;
             break;
         }
     }
     fil.close();
     if (flag == 0) {
-        cout << "Hospital not found!" << endl;
+        gotoxy(35, 7);
+        cout << "Hospital not found!";
     }
+    gotoxy(35, 14);
     cout << "Press Enter to continue" << endl;
     cin.ignore();
     cin.ignore();
@@ -455,27 +506,37 @@ void modifyDoctor() {
     fstream fil;
     fil.open("hospital.dat", ios::binary | ios::in | ios::out);
     int id, newDoc;
+    gotoxy(22, 5);
     cout << "Enter Hospital No whose name has to be changed : ";
     cin >> id;
     while (fil.read((char*)&hosp, sizeof(hosp))) {
         if (hosp.retHospNo() == id) {
-            cout << "Hospital Name : " << hosp.retHospName() << endl;
+            gotoxy(35, 7);
+            cout << "Hospital Name : " << hosp.retHospName();
+            gotoxy(35, 8);
             cout << "Old No of Doctors : " << hosp.retDoctor();
+            gotoxy(35, 9);
             cout << "Enter new No of Doctors : ";
             cin >> newDoc;
+            gotoxy(35, 11);
+            cout << "record is being updated...";
             hosp.changeDoctor(newDoc);
             int current = fil.tellg();
             fil.seekp(current - sizeof(hosp));
             fil.write((char*)&hosp, sizeof(hosp));
-            cout << "record updated!" << endl;
+            delay(1000);
+            gotoxy(35, 13);
+            cout << "record updated!";
             flag++;
             break;
         }
     }
     fil.close();
     if (flag == 0) {
-        cout << "Hospital not found!" << endl;
+        gotoxy(35, 7);
+        cout << "Hospital not found!";
     }
+    gotoxy(35, 15);
     cout << "Press Enter to continue" << endl;
     cin.ignore();
     cin.ignore();
@@ -487,27 +548,37 @@ void modifyNurse() {
     fstream fil;
     fil.open("hospital.dat", ios::binary | ios::in | ios::out);
     int id, newNur;
+    gotoxy(22, 5);
     cout << "Enter Hospital No whose name has to be changed : ";
     cin >> id;
     while (fil.read((char*)&hosp, sizeof(hosp))) {
         if (hosp.retHospNo() == id) {
-            cout << "Hospital Name : " << hosp.retHospName() << endl;
+            gotoxy(35, 7);
+            cout << "Hospital Name : " << hosp.retHospName();
+            gotoxy(35, 8);
             cout << "Old No of Nurses : " << hosp.retNurse();
+            gotoxy(35, 9);
             cout << "Enter new No of Nurses : ";
             cin >> newNur;
+            gotoxy(35, 11);
+            cout << "record is being updated...";
             hosp.changeNurse(newNur);
             int current = fil.tellg();
             fil.seekp(current - sizeof(hosp));
             fil.write((char*)&hosp, sizeof(hosp));
-            cout << "record updated!" << endl;
+            delay(1000);
+            gotoxy(35, 13);
+            cout << "record updated!";
             flag++;
             break;
         }
     }
     fil.close();
     if (flag == 0) {
-        cout << "Hospital not found!" << endl;
+        gotoxy(35, 7);
+        cout << "Hospital not found!";
     }
+    gotoxy(35, 15);
     cout << "Press Enter to continue" << endl;
     cin.ignore();
     cin.ignore();
@@ -519,27 +590,37 @@ void modifyOthStaff() {
     fstream fil;
     fil.open("hospital.dat", ios::binary | ios::in | ios::out);
     int id, newStaff;
+    gotoxy(22, 5);
     cout << "Enter Hospital No whose name has to be changed : ";
     cin >> id;
     while (fil.read((char*)&hosp, sizeof(hosp))) {
         if (hosp.retHospNo() == id) {
-            cout << "Hospital Name : " << hosp.retHospName() << endl;
+            gotoxy(35, 7);
+            cout << "Hospital Name : " << hosp.retHospName();
+            gotoxy(35, 8);
             cout << "Old No of staff : " << hosp.retOthStaff();
+            gotoxy(35, 9);
             cout << "Enter new No of Doctors : ";
             cin >> newStaff;
+            gotoxy(35, 11);
+            cout << "record is being updated...";
             hosp.changeOthStaff(newStaff);
             int current = fil.tellg();
             fil.seekp(current - sizeof(hosp));
             fil.write((char*)&hosp, sizeof(hosp));
-            cout << "record updated!" << endl;
+            delay(1000);
+            gotoxy(35, 13);
+            cout << "record updated!";
             flag++;
             break;
         }
     }
     fil.close();
     if (flag == 0) {
-        cout << "Hospital not found!" << endl;
+        gotoxy(35, 7);
+        cout << "Hospital not found!";
     }
+    gotoxy(35, 15);
     cout << "Press Enter to continue" << endl;
     cin.ignore();
     cin.ignore();
@@ -551,18 +632,26 @@ void modifyCurrPatient() {
     fstream fil;
     fil.open("hospital.dat", ios::binary | ios::in | ios::out);
     int id, newPat;
+    gotoxy(22, 5);
     cout << "Enter Hospital No whose name has to be changed : ";
     cin >> id;
     while (fil.read((char*)&hosp, sizeof(hosp))) {
         if (hosp.retHospNo() == id) {
-            cout << "Hospital Name : " << hosp.retHospName() << endl;
+            gotoxy(35, 7);
+            cout << "Hospital Name : " << hosp.retHospName();
+            gotoxy(35, 8);
             cout << "Old No of Patients : " << hosp.retCurrPatient();
+            gotoxy(35, 9);
             cout << "Enter new No of Patients : ";
             cin >> newPat;
+            gotoxy(35, 11);
+            cout << "record is being updated...";
             hosp.changeCurrPatient(newPat);
             int current = fil.tellg();
             fil.seekp(current - sizeof(hosp));
             fil.write((char*)&hosp, sizeof(hosp));
+            delay(1000);
+            gotoxy(35, 13);
             cout << "record updated!" << endl;
             flag++;
             break;
@@ -570,8 +659,10 @@ void modifyCurrPatient() {
     }
     fil.close();
     if (flag == 0) {
-        cout << "Hospital not found!" << endl;
+        gotoxy(35, 7);
+        cout << "Hospital not found!";
     }
+    gotoxy(35, 15);
     cout << "Press Enter to continue" << endl;
     cin.ignore();
     cin.ignore();
@@ -584,20 +675,26 @@ void modifyIsMed() {
     fil.open("hospital.dat", ios::binary | ios::in | ios::out);
     int id;
     char newIsMed;
+    gotoxy(22, 5);
     cout << "Enter Hospital No whose name has to be changed : ";
     cin >> id;
     while (fil.read((char*)&hosp, sizeof(hosp))) {
         if (hosp.retHospNo() == id) {
-            cout << "Hospital Name : " << hosp.retHospName() << endl;
+            gotoxy(22, 7);
+            cout << "Hospital Name : " << hosp.retHospName();
+            gotoxy(22, 8);
             cout << "Before if there was a medical store nearby? : ";
             if (hosp.retIsMedStore() == true) {
-                cout << "Yes" << endl;
+                cout << "Yes";
             }
             else {
-                cout << "No" << endl;
+                cout << "No";
             }
+            gotoxy(22, 9);
             cout << "Is there a medical store nearby now?(y/n) : ";
             cin >> newIsMed;
+            gotoxy(22, 11);
+            cout << "record is being updated...";
             if (newIsMed == 'y') {
                 hosp.changeIsMedStore(true);
             }
@@ -607,15 +704,19 @@ void modifyIsMed() {
             int current = fil.tellg();
             fil.seekp(current - sizeof(hosp));
             fil.write((char*)&hosp, sizeof(hosp));
-            cout << "record updated!" << endl;
+            delay(1000);
+            gotoxy(22, 13);
+            cout << "record updated!";
             flag++;
             break;
         }
     }
     fil.close();
     if (flag == 0) {
-        cout << "Hospital not found!" << endl;
+        gotoxy(22, 7);
+        cout << "Hospital not found!";
     }
+    gotoxy(22, 15);
     cout << "Press Enter to continue" << endl;
     cin.ignore();
     cin.ignore();
@@ -628,20 +729,26 @@ void modifyGenSur() {
     fil.open("hospital.dat", ios::binary | ios::in | ios::out);
     int id;
     char newGen;
+    gotoxy(22, 5);
     cout << "Enter Hospital No whose name has to be changed : ";
     cin >> id;
     while (fil.read((char*)&hosp, sizeof(hosp))) {
         if (hosp.retHospNo() == id) {
-            cout << "Hospital Name : " << hosp.retHospName() << endl;
+            gotoxy(22, 7);
+            cout << "Hospital Name : " << hosp.retHospName();
+            gotoxy(22, 8);
             cout << "Before if there was a General Surgery Department? : ";
             if (hosp.retIsMedStore() == true) {
-                cout << "Yes" << endl;
+                cout << "Yes";
             }
             else {
-                cout << "No" << endl;
+                cout << "No";
             }
+            gotoxy(22, 9);
             cout << "Is there a General Surgery Department now?(y/n) : ";
             cin >> newGen;
+            gotoxy(22, 11);
+            cout << "record is being updated...";
             if (newGen == 'y') {
                 hosp.changeGenSur(true);
             }
@@ -651,15 +758,19 @@ void modifyGenSur() {
             int current = fil.tellg();
             fil.seekp(current - sizeof(hosp));
             fil.write((char*)&hosp, sizeof(hosp));
-            cout << "record updated!" << endl;
+            delay(1000);
+            gotoxy(22, 13);
+            cout << "record updated!";
             flag++;
             break;
         }
     }
     fil.close();
     if (flag == 0) {
-        cout << "Hospital not found!" << endl;
+        gotoxy(22, 7);
+        cout << "Hospital not found!";
     }
+    gotoxy(22, 15);
     cout << "Press Enter to continue" << endl;
     cin.ignore();
     cin.ignore();
@@ -672,20 +783,26 @@ void modifyCard() {
     fil.open("hospital.dat", ios::binary | ios::in | ios::out);
     int id;
     char newCard;
+    gotoxy(22, 5);
     cout << "Enter Hospital No whose name has to be changed : ";
     cin >> id;
     while (fil.read((char*)&hosp, sizeof(hosp))) {
         if (hosp.retHospNo() == id) {
-            cout << "Hospital Name : " << hosp.retHospName() << endl;
+            gotoxy(22, 7);
+            cout << "Hospital Name : " << hosp.retHospName();
+            gotoxy(22, 8);
             cout << "Before if there was a Cardiology Department? : ";
             if (hosp.retCard() == true) {
-                cout << "Yes" << endl;
+                cout << "Yes";
             }
             else {
-                cout << "No" << endl;
+                cout << "No";
             }
+            gotoxy(22, 9);
             cout << "Is there a Cardiology Department now?(y/n) : ";
             cin >> newCard;
+            gotoxy(22, 11);
+            cout << "record is being updated...";
             if (newCard == 'y') {
                 hosp.changeCard(true);
             }
@@ -695,15 +812,19 @@ void modifyCard() {
             int current = fil.tellg();
             fil.seekp(current - sizeof(hosp));
             fil.write((char*)&hosp, sizeof(hosp));
-            cout << "record updated!" << endl;
+            delay(1000);
+            gotoxy(22, 13);
+            cout << "record updated!";
             flag++;
             break;
         }
     }
     fil.close();
     if (flag == 0) {
-        cout << "Hospital not found!" << endl;
+        gotoxy(22, 7);
+        cout << "Hospital not found!";
     }
+    gotoxy(22, 15);
     cout << "Press Enter to continue" << endl;
     cin.ignore();
     cin.ignore();
@@ -716,20 +837,26 @@ void modifyENT() {
     fil.open("hospital.dat", ios::binary | ios::in | ios::out);
     int id;
     char newENT;
+    gotoxy(22, 5);
     cout << "Enter Hospital No whose name has to be changed : ";
     cin >> id;
     while (fil.read((char*)&hosp, sizeof(hosp))) {
         if (hosp.retHospNo() == id) {
-            cout << "Hospital Name : " << hosp.retHospName() << endl;
+            gotoxy(22, 7);
+            cout << "Hospital Name : " << hosp.retHospName();
+            gotoxy(22, 8);
             cout << "Before if there was a ENT Department? : ";
             if (hosp.retENT() == true) {
-                cout << "Yes" << endl;
+                cout << "Yes";
             }
             else {
-                cout << "No" << endl;
+                cout << "No";
             }
+            gotoxy(22, 9);
             cout << "Is there a ENT Department now?(y/n) : ";
             cin >> newENT;
+            gotoxy(22, 11);
+            cout << "record is being updated...";
             if (newENT == 'y') {
                 hosp.changeENT(true);
             }
@@ -739,15 +866,19 @@ void modifyENT() {
             int current = fil.tellg();
             fil.seekp(current - sizeof(hosp));
             fil.write((char*)&hosp, sizeof(hosp));
-            cout << "record updated!" << endl;
+            delay(1000);
+            gotoxy(22, 13);
+            cout << "record updated!";
             flag++;
             break;
         }
     }
     fil.close();
     if (flag == 0) {
-        cout << "Hospital not found!" << endl;
+        gotoxy(22, 7);
+        cout << "Hospital not found!";
     }
+    gotoxy(22, 15);
     cout << "Press Enter to continue" << endl;
     cin.ignore();
     cin.ignore();
@@ -760,20 +891,26 @@ void modifyNeuro() {
     fil.open("hospital.dat", ios::binary | ios::in | ios::out);
     int id;
     char newNeu;
+    gotoxy(22, 5);
     cout << "Enter Hospital No whose name has to be changed : ";
     cin >> id;
     while (fil.read((char*)&hosp, sizeof(hosp))) {
         if (hosp.retHospNo() == id) {
-            cout << "Hospital Name : " << hosp.retHospName() << endl;
+            gotoxy(22, 7);
+            cout << "Hospital Name : " << hosp.retHospName();
+            gotoxy(22, 8);
             cout << "Before if there was a Neurology Department? : ";
             if (hosp.retNeuro() == true) {
-                cout << "Yes" << endl;
+                cout << "Yes";
             }
             else {
-                cout << "No" << endl;
+                cout << "No";
             }
+            gotoxy(22, 9);
             cout << "Is there a Neurology Department now?(y/n) : ";
             cin >> newNeu;
+            gotoxy(22, 11);
+            cout << "record is being updated...";
             if (newNeu == 'y') {
                 hosp.changeNeuro(true);
             }
@@ -783,15 +920,19 @@ void modifyNeuro() {
             int current = fil.tellg();
             fil.seekp(current - sizeof(hosp));
             fil.write((char*)&hosp, sizeof(hosp));
-            cout << "record updated!" << endl;
+            delay(1000);
+            gotoxy(22, 13);
+            cout << "record updated!";
             flag++;
             break;
         }
     }
     fil.close();
     if (flag == 0) {
-        cout << "Hospital not found!" << endl;
+        gotoxy(22, 7);
+        cout << "Hospital not found!";
     }
+    gotoxy(22, 15);
     cout << "Press Enter to continue" << endl;
     cin.ignore();
     cin.ignore();
@@ -804,20 +945,26 @@ void modifyOrtho() {
     fil.open("hospital.dat", ios::binary | ios::in | ios::out);
     int id;
     char newOrtho;
+    gotoxy(22, 5);
     cout << "Enter Hospital No whose name has to be changed : ";
     cin >> id;
     while (fil.read((char*)&hosp, sizeof(hosp))) {
         if (hosp.retHospNo() == id) {
-            cout << "Hospital Name : " << hosp.retHospName() << endl;
+            gotoxy(22, 7);
+            cout << "Hospital Name : " << hosp.retHospName();
+            gotoxy(22, 8);
             cout << "Before if there was a Orthopedics Department? : ";
             if (hosp.retOrtho() == true) {
-                cout << "Yes" << endl;
+                cout << "Yes";
             }
             else {
-                cout << "No" << endl;
+                cout << "No";
             }
+            gotoxy(22, 9);
             cout << "Is there a Orthopedics Department now?(y/n) : ";
             cin >> newOrtho;
+            gotoxy(22, 11);
+            cout << "record is being updated...";
             if (newOrtho == 'y') {
                 hosp.changeOrtho(true);
             }
@@ -827,15 +974,19 @@ void modifyOrtho() {
             int current = fil.tellg();
             fil.seekp(current - sizeof(hosp));
             fil.write((char*)&hosp, sizeof(hosp));
-            cout << "record updated!" << endl;
+            delay(1000);
+            gotoxy(22, 13);
+            cout << "record updated!";
             flag++;
             break;
         }
     }
     fil.close();
     if (flag == 0) {
-        cout << "Hospital not found!" << endl;
+        gotoxy(22, 7);
+        cout << "Hospital not found!";
     }
+    gotoxy(22, 15);
     cout << "Press Enter to continue" << endl;
     cin.ignore();
     cin.ignore();
@@ -848,20 +999,26 @@ void modifyOnco() {
     fil.open("hospital.dat", ios::binary | ios::in | ios::out);
     int id;
     char newOnco;
+    gotoxy(22, 5);
     cout << "Enter Hospital No whose name has to be changed : ";
     cin >> id;
     while (fil.read((char*)&hosp, sizeof(hosp))) {
         if (hosp.retHospNo() == id) {
-            cout << "Hospital Name : " << hosp.retHospName() << endl;
+            gotoxy(22, 7);
+            cout << "Hospital Name : " << hosp.retHospName();
+            gotoxy(22, 8);
             cout << "Before if there was a Oncology Department? : ";
             if (hosp.retOnco() == true) {
-                cout << "Yes" << endl;
+                cout << "Yes";
             }
             else {
-                cout << "No" << endl;
+                cout << "No";
             }
+            gotoxy(22, 9);
             cout << "Is there a Oncology Department now?(y/n) : ";
             cin >> newOnco;
+            gotoxy(22, 11);
+            cout << "record is being updated...";
             if (newOnco == 'y') {
                 hosp.changeOnco(true);
             }
@@ -871,15 +1028,19 @@ void modifyOnco() {
             int current = fil.tellg();
             fil.seekp(current - sizeof(hosp));
             fil.write((char*)&hosp, sizeof(hosp));
-            cout << "record updated!" << endl;
+            delay(1000);
+            gotoxy(22, 13);
+            cout << "record updated!";
             flag++;
             break;
         }
     }
     fil.close();
     if (flag == 0) {
-        cout << "Hospital not found!" << endl;
+        gotoxy(22, 7);
+        cout << "Hospital not found!";
     }
+    gotoxy(22, 15);
     cout << "Press Enter to continue" << endl;
     cin.ignore();
     cin.ignore();
@@ -892,20 +1053,26 @@ void modifyPhysio() {
     fil.open("hospital.dat", ios::binary | ios::in | ios::out);
     int id;
     char newPhy;
+    gotoxy(22, 5);
     cout << "Enter Hospital No whose name has to be changed : ";
     cin >> id;
     while (fil.read((char*)&hosp, sizeof(hosp))) {
         if (hosp.retHospNo() == id) {
-            cout << "Hospital Name : " << hosp.retHospName() << endl;
+            gotoxy(22, 7);
+            cout << "Hospital Name : " << hosp.retHospName();
+            gotoxy(22, 8);
             cout << "Before if there was a Physiology Department? : ";
             if (hosp.retPhysio() == true) {
-                cout << "Yes" << endl;
+                cout << "Yes";
             }
             else {
-                cout << "No" << endl;
+                cout << "No";
             }
+            gotoxy(22, 9);
             cout << "Is there a Physiology Department now?(y/n) : ";
             cin >> newPhy;
+            gotoxy(22, 11);
+            cout << "record is being updated...";
             if (newPhy == 'y') {
                 hosp.changePhysio(true);
             }
@@ -915,15 +1082,19 @@ void modifyPhysio() {
             int current = fil.tellg();
             fil.seekp(current - sizeof(hosp));
             fil.write((char*)&hosp, sizeof(hosp));
-            cout << "record updated!" << endl;
+            delay(1000);
+            gotoxy(22, 13);
+            cout << "record updated!";
             flag++;
             break;
         }
     }
     fil.close();
     if (flag == 0) {
-        cout << "Hospital not found!" << endl;
+        gotoxy(22, 7);
+        cout << "Hospital not found!";
     }
+    gotoxy(22, 15);
     cout << "Press Enter to continue" << endl;
     cin.ignore();
     cin.ignore();
@@ -936,20 +1107,26 @@ void modifyUro() {
     fil.open("hospital.dat", ios::binary | ios::in | ios::out);
     int id;
     char newUro;
+    gotoxy(22, 5);
     cout << "Enter Hospital No whose name has to be changed : ";
     cin >> id;
     while (fil.read((char*)&hosp, sizeof(hosp))) {
         if (hosp.retHospNo() == id) {
-            cout << "Hospital Name : " << hosp.retHospName() << endl;
+            gotoxy(22, 7);
+            cout << "Hospital Name : " << hosp.retHospName();
+            gotoxy(22, 8);
             cout << "Before if there was a Urology Department? : ";
             if (hosp.retUro() == true) {
-                cout << "Yes" << endl;
+                cout << "Yes";
             }
             else {
-                cout << "No" << endl;
+                cout << "No";
             }
+            gotoxy(22, 9);
             cout << "Is there a Urology Department now?(y/n) : ";
             cin >> newUro;
+            gotoxy(22, 11);
+            cout << "record is being updated...";
             if (newUro == 'y') {
                 hosp.changeUro(true);
             }
@@ -959,15 +1136,19 @@ void modifyUro() {
             int current = fil.tellg();
             fil.seekp(current - sizeof(hosp));
             fil.write((char*)&hosp, sizeof(hosp));
-            cout << "record updated!" << endl;
+            delay(1000);
+            gotoxy(22, 13);
+            cout << "record updated!";
             flag++;
             break;
         }
     }
     fil.close();
     if (flag == 0) {
-        cout << "Hospital not found!" << endl;
+        gotoxy(22, 7);
+        cout << "Hospital not found!";
     }
+    gotoxy(22, 15);
     cout << "Press Enter to continue" << endl;
     cin.ignore();
     cin.ignore();
@@ -979,7 +1160,9 @@ void searchByHName() {
     char s[20];
     int flag = 0;
     fil.open("hospital.dat", ios::binary | ios::in);
+    gotoxy(33, 3);
     cout << "Enter name of hospital : ";
+    getchar();
     fgets(s, 20, stdin);
     while (fil.read((char*)&hosp, sizeof(hosp))) {
         if (strcmpi(hosp.retHospName(), s) == 0) {
@@ -989,9 +1172,11 @@ void searchByHName() {
         }
     }
     if (flag == 0) {
-        cout << "Hospital not found" << endl;
+        gotoxy(33, 5);
+        cout << "Hospital not found";
     }
     fil.close();
+    gotoxy(33, 23);
     cout << "Press Enter to continue" << endl;
     cin.ignore();
     cin.ignore();
@@ -1003,6 +1188,7 @@ void searchByHNo() {
     int temp;
     int flag = 0;
     fil.open("hospital.dat", ios::binary | ios::in);
+    gotoxy(35, 3);
     cout << "Enter hospital No : ";
     cin >> temp;
     while (fil.read((char*)&hosp, sizeof(hosp))) {
@@ -1013,9 +1199,11 @@ void searchByHNo() {
         }
     }
     if (flag == 0) {
-        cout << "Hospital not found" << endl;
+        gotoxy(35, 5);
+        cout << "Hospital not found";
     }
     fil.close();
+    gotoxy(35, 23);
     cout << "Press Enter to continue" << endl;
     cin.ignore();
     cin.ignore();
@@ -1027,7 +1215,6 @@ void sortByHName() {
     fil.open("hospital.dat", ios::binary | ios::in | ios::out);
     fil.seekg(0, ios::end);
     int NOR = fil.tellg() / sizeof(hospital);
-    string s1, s2;
     for (int i = 0; i < NOR - 1; i++) {
         for (int j = 0; j < NOR - i - 1; j++) {
             fil.seekg(j * sizeof(hospital));
@@ -1041,8 +1228,10 @@ void sortByHName() {
         }
     }
     fil.close();
+    gotoxy(43, 2);
     cout << "SORTING DONE" << endl;
-    delay(1000);
+    delay(800);
+    gotoxy(43, 4);
     cout << "SORTED LIST: " << endl;
     delay(1000);
     hospTable();
@@ -1067,8 +1256,10 @@ void sortByHNo() {
         }
     }
     fil.close();
+    gotoxy(43, 2);
     cout << "SORTING DONE" << endl;
     delay(800);
+    gotoxy(43, 4);
     cout << "SORTED LIST: " << endl;
     delay(1000);
     hospTable();
@@ -1093,8 +1284,10 @@ void sortByDoc() {
         }
     }
     fil.close();
+    gotoxy(43, 2);
     cout << "SORTING DONE" << endl;
     delay(800);
+    gotoxy(43, 4);
     cout << "SORTED LIST: " << endl;
     delay(1000);
     hospTable();
@@ -1119,8 +1312,10 @@ void sortByNur() {
         }
     }
     fil.close();
+    gotoxy(43, 2);
     cout << "SORTING DONE" << endl;
     delay(800);
+    gotoxy(43, 4);
     cout << "SORTED LIST: " << endl;
     delay(1000);
     hospTable();
@@ -1145,8 +1340,10 @@ void sortByStaff() {
         }
     }
     fil.close();
+    gotoxy(43, 2);
     cout << "SORTING DONE" << endl;
     delay(800);
+    gotoxy(43, 4);
     cout << "SORTED LIST: " << endl;
     delay(1000);
     hospTable();
@@ -1171,8 +1368,10 @@ void sortbyPat() {
         }
     }
     fil.close();
+    gotoxy(43, 2);
     cout << "SORTING DONE" << endl;
     delay(800);
+    gotoxy(43, 4);
     cout << "SORTED LIST: " << endl;
     delay(1000);
     hospTable();
@@ -1185,6 +1384,7 @@ void deleteHosp() {
     fil1.open("hospital.dat", ios::binary | ios::in);
     fil2.open("deleteH.dat", ios::binary | ios::out);
     int id;
+    gotoxy(20, 5);
     cout << "Enter Hospital No of hospital which has to be deleted : ";
     cin >> id;
     while (fil1.read((char*)&hosp, sizeof(hosp))) {
@@ -1198,12 +1398,18 @@ void deleteHosp() {
     fil1.close();
     fil2.close();
     if (flag == 0) {
-        cout << "record not found!" << endl;
+        gotoxy(20, 7);
+        cout << "record not found!";
     }
     else {
         transferHosp();
-        cout << "Hospital removed!" << endl;
+        gotoxy(20, 7);
+        cout << "record is being deleted...";
+        delay(1000);
+        gotoxy(20, 9);
+        cout << "Hospital removed!";
     }
+    gotoxy(20, 11);
     cout << "Press Enter to continue" << endl;
     cin.ignore();
     cin.ignore();
@@ -1226,42 +1432,43 @@ void hospTable() {
     hospital hosp;
     ifstream fil;
     fil.open("hospital.dat", ios::binary);
-    gotoxy(32, 6);
+    gotoxy(40, 6);
     cout << "List Of Hospitals";
-    gotoxy(1, 7);
+    gotoxy(7, 7);
+    cout << "=========================================";
     cout << "========================================";
-    cout << "========================================";
-    gotoxy(1, 8);
+    gotoxy(8, 8);
     cout << "HOSP ID";
-    gotoxy(9, 8);
+    gotoxy(16, 8);
     cout << "HOSP NAME";
-    gotoxy(23, 8);
+    gotoxy(30, 8);
     cout << "DOCTORS";
-    gotoxy(32, 8);
+    gotoxy(39, 8);
     cout << "NURSES";
-    gotoxy(40, 8);
+    gotoxy(47, 8);
     cout << "OTHER STAFF";
-    gotoxy(53, 8);
+    gotoxy(60, 8);
     cout << "CURR PATIENTS";
-    gotoxy(68, 8);
-    cout << "MEDICAL STORE" << endl;
-    cout << "========================================";
+    gotoxy(75, 8);
+    cout << "MEDICAL STORE";
+    gotoxy(7, 9);
+    cout << "=========================================";
     cout << "========================================";
     int j = 0;
     while (fil.read((char*)&hosp,sizeof(hosp))) {
-        gotoxy(1, (j + 10));
+        gotoxy(8, (j + 10));
         cout << hosp.retHospNo();
-        gotoxy(9, (j + 10));
+        gotoxy(16, (j + 10));
         cout << hosp.retHospName();
-        gotoxy(23, (j + 10));
+        gotoxy(30, (j + 10));
         cout << hosp.retDoctor();
-        gotoxy(32, (j + 10));
+        gotoxy(39, (j + 10));
         cout << hosp.retNurse();
-        gotoxy(40, (j + 10));
+        gotoxy(47, (j + 10));
         cout << hosp.retOthStaff();
-        gotoxy(53, (j + 10));
+        gotoxy(60, (j + 10));
         cout << hosp.retCurrPatient();
-        gotoxy(68, (j + 10));
+        gotoxy(75, (j + 10));
         if (hosp.retIsMedStore() == true) {
             cout << "YES";
         }
@@ -1270,7 +1477,7 @@ void hospTable() {
         }
         j++;
     }
-    cout << endl;
+    gotoxy(7, 10 + j);
     cout << "========================================";
     cout << "========================================";
     cout << endl << endl;
@@ -1287,89 +1494,90 @@ void hospTableDept() {
     hospital hosp;
     ifstream fil;
     fil.open("hospital.dat", ios::binary);
-    gotoxy(32, 6);
+    gotoxy(40, 6);
     cout << "List Of Hospitals";
-    gotoxy(1, 7);
+    gotoxy(2, 7);
+    cout << "=================================================";
     cout << "================================================";
-    cout << "================================================";
-    gotoxy(1, 8);
+    gotoxy(3, 8);
     cout << "HOSP ID";
-    gotoxy(9, 8);
+    gotoxy(11, 8);
     cout << "HOSP NAME";
-    gotoxy(23, 8);
+    gotoxy(25, 8);
     cout << "GEN SURGERY";
-    gotoxy(36, 8);
+    gotoxy(38, 8);
     cout << "CARDIOLOGY";
-    gotoxy(48, 8);
+    gotoxy(50, 8);
     cout << "ENT";
-    gotoxy(53, 8);
+    gotoxy(55, 8);
     cout << "NEUROLOGY";
-    gotoxy(64, 8);
+    gotoxy(66, 8);
     cout << "ORTHO";
-    gotoxy(71, 8);
+    gotoxy(73, 8);
     cout << "ONCOLOGY";
-    gotoxy(81, 8);
+    gotoxy(83, 8);
     cout << "PHYSIO";
-    gotoxy(89, 8);
-    cout << "UROLOGY" << endl;
-    cout << "================================================";
+    gotoxy(91, 8);
+    cout << "UROLOGY";
+    gotoxy(2, 9);
+    cout << "=================================================";
     cout << "================================================";
     j = 0;
     while (fil.read((char*)&hosp, sizeof(hosp))) {
-        gotoxy(1, (j + 10));
+        gotoxy(3, (j + 10));
         cout << hosp.retHospNo();
-        gotoxy(9, (j + 10));
+        gotoxy(11, (j + 10));
         cout << hosp.retHospName();
-        gotoxy(23, (j + 10));
+        gotoxy(25, (j + 10));
         if (hosp.retGenSur() == true) {
             cout << "YES";
         }
         else {
             cout << "NO";
         }
-        gotoxy(36, (j + 10));
+        gotoxy(38, (j + 10));
         if (hosp.retCard() == true) {
             cout << "YES";
         }
         else {
             cout << "NO";
         }
-        gotoxy(48, (j + 10));
+        gotoxy(50, (j + 10));
         if (hosp.retENT() == true) {
             cout << "YES";
         }
         else {
             cout << "NO";
         }
-        gotoxy(53, (j + 10));
+        gotoxy(55, (j + 10));
         if (hosp.retNeuro() == true) {
             cout << "YES";
         }
         else {
             cout << "NO";
         }
-        gotoxy(64, (j + 10));
+        gotoxy(66, (j + 10));
         if (hosp.retOrtho() == true) {
             cout << "YES";
         }
         else {
             cout << "NO";
         }
-        gotoxy(71, (j + 10));
+        gotoxy(73, (j + 10));
         if (hosp.retOnco() == true) {
             cout << "YES";
         }
         else {
             cout << "NO";
         }
-        gotoxy(81, (j + 10));
+        gotoxy(83, (j + 10));
         if (hosp.retPhysio() == true) {
             cout << "YES";
         }
         else {
             cout << "NO";
         }
-        gotoxy(89, (j + 10));
+        gotoxy(91, (j + 10));
         if (hosp.retUro() == true) {
             cout << "YES";
         }
@@ -1378,8 +1586,8 @@ void hospTableDept() {
         }
         j++;
     }
-    cout << endl;
-    cout << "================================================";
+    gotoxy(2, 10 + j);
+    cout << "=================================================";
     cout << "================================================";
     cout << endl << endl;
     fil.close();
@@ -1387,7 +1595,6 @@ void hospTableDept() {
     cout << "Press Enter to continue" << endl;
     cin.ignore();
     cin.ignore();
-    menuHosp();
 }
 
 void menuHosp() {
@@ -1395,14 +1602,21 @@ void menuHosp() {
     int choice;
     do {
         system("cls");
-        gotoxy(3, 5);
-        cout << "HOSPITAL MENU" << endl;
-        cout << "1. ENTER/DISPLAY MENU" << endl;
-        cout << "2. UPDATE MENU" << endl;
-        cout << "3. SEARCH MENU" << endl;
-        cout << "4. SORT MENU" << endl;
-        cout << "5. BACK TO MAIN MENU" << endl;
-        cout << "6. EXIT FROM PROGRAM" << endl;
+        gotoxy(42, 5);
+        cout << "HOSPITAL MENU";
+        gotoxy(38, 7);
+        cout << "1. ENTER/DISPLAY MENU";
+        gotoxy(38, 8);
+        cout << "2. UPDATE MENU";
+        gotoxy(38, 9);
+        cout << "3. SEARCH MENU";
+        gotoxy(38, 10);
+        cout << "4. SORT MENU";
+        gotoxy(38, 11);
+        cout << "5. BACK TO MAIN MENU";
+        gotoxy(38, 12);
+        cout << "6. EXIT FROM PROGRAM";
+        gotoxy(38, 14);
         cout << "Select The Menu: ";
         cin >> choice;
         system("cls");
@@ -1431,13 +1645,19 @@ void menuHEnterDisp() {
     int choice;
     do {
         system("cls");
-        gotoxy(3, 5);
-        cout << "ENTER/DISPLAY MENU" << endl;
-        cout << "1. CREATE NEW FILE" << endl;
-        cout << "2. ADD DATA TO EXISTING FILE" << endl;
-        cout << "3. DISPLAY FILE" << endl;
-        cout << "4. DISPLAY IN TABULAR FORM" << endl;
-        cout << "5. BACK TO MAIN MENU" << endl;
+        gotoxy(40, 5);
+        cout << "ENTER/DISPLAY MENU";
+        gotoxy(36, 7);
+        cout << "1. CREATE NEW FILE";
+        gotoxy(36, 8);
+        cout << "2. ADD DATA TO EXISTING FILE";
+        gotoxy(36, 9);
+        cout << "3. DISPLAY FILE";
+        gotoxy(36, 10);
+        cout << "4. DISPLAY IN TABULAR FORM";
+        gotoxy(36, 11);
+        cout << "5. BACK TO MAIN MENU";
+        gotoxy(36, 13);
         cout << "Select The Menu: ";
         cin >> choice;
         system("cls");
@@ -1463,24 +1683,41 @@ void menuHUpdate() {
     int choice;
     do {
         system("cls");
-        gotoxy(3, 5);
-        cout << "UPDATE MENU" << endl;
-        cout << "1. REMOVE A HOSPITAL FROM LIST" << endl;
-        cout << "2. CHANGE HOSPITAL NAME" << endl;
-        cout << "3. CHANGE DOCTOR COUNT IN A HOSPITAL" << endl;
-        cout << "4. CHANGE NURSE COUNT IN A HOSPITAL" << endl;
-        cout << "5. CHANGE STAFF COUNT IN A HOSPITAL" << endl;
-        cout << "6. CHANGE PATIENT COUNT IN A HOSPITAL" << endl;
-        cout << "7. CHANGE MEDICAL STORE AVAILABILTY IN A HOSPITAL" << endl;
-        cout << "8. CHANGE GENERAL SURGERY DEPARTMENT AVAILABILTY IN A HOSPITAL" << endl;
-        cout << "9. CHANGE CARDIOLOGY DEPARTMENT AVAILABILTY IN A HOSPITAL" << endl;
-        cout << "10. CHANGE ENT DEPARTMENT AVAILABILTY IN A HOSPITAL" << endl;
-        cout << "11. CHANGE NEUROLOGY DEPARTMENT AVAILABILTY IN A HOSPITAL" << endl;
-        cout << "12. CHANGE ORTHOPEDICS DEPARTMENT AVAILABILTY IN A HOSPITAL" << endl;
-        cout << "13. CHANGE ONCOLOGY DEPARTMENT AVAILABILTY IN A HOSPITAL" << endl;
-        cout << "14. CHANGE PHYSIOTHERAPY DEPARTMENT AVAILABILTY IN A HOSPITAL" << endl;
-        cout << "15. CHANGE UROLOGY DEPARTMENT AVAILABILTY IN A HOSPITAL" << endl;
-        cout << "16. BACK TO MAIN MENU" << endl;
+        gotoxy(44, 5);
+        cout << "UPDATE MENU";
+        gotoxy(20, 7);
+        cout << "1. REMOVE A HOSPITAL FROM LIST";
+        gotoxy(20, 8);
+        cout << "2. CHANGE HOSPITAL NAME";
+        gotoxy(20, 9);
+        cout << "3. CHANGE DOCTOR COUNT IN A HOSPITAL";
+        gotoxy(20, 10);
+        cout << "4. CHANGE NURSE COUNT IN A HOSPITAL";
+        gotoxy(20, 11);
+        cout << "5. CHANGE STAFF COUNT IN A HOSPITAL";
+        gotoxy(20, 12);
+        cout << "6. CHANGE PATIENT COUNT IN A HOSPITAL";
+        gotoxy(20, 13);
+        cout << "7. CHANGE MEDICAL STORE AVAILABILTY IN A HOSPITAL";
+        gotoxy(20, 14);
+        cout << "8. CHANGE GENERAL SURGERY DEPARTMENT AVAILABILTY IN A HOSPITAL";
+        gotoxy(20, 15);
+        cout << "9. CHANGE CARDIOLOGY DEPARTMENT AVAILABILTY IN A HOSPITAL";
+        gotoxy(20, 16);
+        cout << "10. CHANGE ENT DEPARTMENT AVAILABILTY IN A HOSPITAL";
+        gotoxy(20, 17);
+        cout << "11. CHANGE NEUROLOGY DEPARTMENT AVAILABILTY IN A HOSPITAL";
+        gotoxy(20, 18);
+        cout << "12. CHANGE ORTHOPEDICS DEPARTMENT AVAILABILTY IN A HOSPITAL";
+        gotoxy(20, 19);
+        cout << "13. CHANGE ONCOLOGY DEPARTMENT AVAILABILTY IN A HOSPITAL";
+        gotoxy(20, 20);
+        cout << "14. CHANGE PHYSIOTHERAPY DEPARTMENT AVAILABILTY IN A HOSPITAL";
+        gotoxy(20, 21);
+        cout << "15. CHANGE UROLOGY DEPARTMENT AVAILABILTY IN A HOSPITAL";
+        gotoxy(20, 22);
+        cout << "16. BACK TO MAIN MENU";
+        gotoxy(20, 24);
         cout << "Select The Menu: ";
         cin >> choice;
         system("cls");
@@ -1539,11 +1776,15 @@ void menuHSearch() {
     int choice;
     do {
         system("cls");
-        gotoxy(3, 5);
-        cout << "SEARCH MENU" << endl;
-        cout << "1. SEARCH BY HOSPITAL ID" << endl;
-        cout << "2. SEARCH BY HOSPITAL NAME" << endl;
-        cout << "3. BACK TO MAIN MENU" << endl;
+        gotoxy(44, 5);
+        cout << "SEARCH MENU";
+        gotoxy(37, 7);
+        cout << "1. SEARCH BY HOSPITAL ID";
+        gotoxy(37, 8);
+        cout << "2. SEARCH BY HOSPITAL NAME";
+        gotoxy(37, 9);
+        cout << "3. BACK TO MAIN MENU";
+        gotoxy(37, 11);
         cout << "Select The Menu: ";
         cin >> choice;
         system("cls");
@@ -1563,16 +1804,25 @@ void menuHSort() {
     int choice;
     do {
         system("cls");
-        gotoxy(3, 5);
-        cout << "SORT MENU" << endl;
-        cout << "1. SORT BY HOSPITAL NAME" << endl;
-        cout << "2. SORT BY HOSPITAL ID" << endl;
-        cout << "3. SORT BY DOCTOR COUNT" << endl;
-        cout << "4. SORT BY NURSE COUNT" << endl;
-        cout << "5. SORT BY STAFF COUNT" << endl;
-        cout << "6. SORT BY PATIENT COUNT" << endl;
-        cout << "7. BACK TO MAIN MENU" << endl << endl;
-        cout << "NOTE: ALL THE MENUS WILL SORT IN ASCENDING ORDER" << endl << endl;
+        gotoxy(45, 5);
+        cout << "SORT MENU";
+        gotoxy(38, 7);
+        cout << "1. SORT BY HOSPITAL NAME";
+        gotoxy(38, 8);
+        cout << "2. SORT BY HOSPITAL ID";
+        gotoxy(38, 9);
+        cout << "3. SORT BY DOCTOR COUNT";
+        gotoxy(38, 10);
+        cout << "4. SORT BY NURSE COUNT";
+        gotoxy(38, 11);
+        cout << "5. SORT BY STAFF COUNT";
+        gotoxy(38, 12);
+        cout << "6. SORT BY PATIENT COUNT";
+        gotoxy(38, 13);
+        cout << "7. BACK TO MAIN MENU";
+        gotoxy(38, 15);
+        cout << "NOTE: ALL THE MENUS WILL SORT IN ASCENDING ORDER";
+        gotoxy(38, 17);
         cout << "Select The Menu: ";
         cin >> choice;
         system("cls");
