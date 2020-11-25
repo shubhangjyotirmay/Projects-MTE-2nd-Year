@@ -55,6 +55,7 @@ void avgTimeSame(vector<int> &processS, vector<int> &burstTimeS) {
         cout << waitTimeS[i];
         gotoxy(48, 8 + i);
         cout << turnArTimeS[i] << endl;
+        delay(1000);
     }
     cout << "==============================";
     cout << "==============================";
@@ -165,6 +166,7 @@ void avgTime(vector<int> &process, vector<int> &arrTime, vector<int> &burstTime)
         cout << tatTime[i];
         gotoxy(82, 8 + i);
         cout << compTime << endl;
+        delay(1000);
     }
     cout << "==============================================";
     cout << "==============================================";
