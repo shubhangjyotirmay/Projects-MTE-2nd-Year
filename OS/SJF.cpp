@@ -2,6 +2,7 @@
 #include <climits>
 
 using namespace std;
+
 int process[10][6];
 
 // non - preemptive(SJF)
