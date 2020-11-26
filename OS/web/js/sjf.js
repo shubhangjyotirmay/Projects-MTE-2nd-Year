@@ -1,5 +1,7 @@
 var process = [];
 var number;
+var totWait = 0;
+var totTat = 0;
 
 
 $(document).ready(function() {
@@ -73,6 +75,8 @@ $(document).ready(function() {
   function dispTable() {
     let tb = document.querySelector(".tab-fcfs");
     for (let i = 0; i < number; i++) {
+      totWait = totWait + process[i][4];
+      totTat = totTat + process[i][5];
 
       let tr = document.createElement("tr");
       let th1 = document.createElement("th");
@@ -92,6 +96,9 @@ $(document).ready(function() {
       tr.appendChild(th5);
       tb.appendChild(tr);
     }
+    
+    document.querySelector(".bot-fcfs-con1").innerHTML = "AVERAGE WAITING TIME : " + (totWait / number);
+    document.querySelector(".bot-fcfs-con2").innerHTML = "AVERAGE TURN AROUND TIME : " + (totTat / number);
 }
 
   dispData();
