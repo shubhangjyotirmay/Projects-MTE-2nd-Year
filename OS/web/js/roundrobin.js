@@ -6,10 +6,12 @@ var compTime = [];
 var process;
 var totWait = 0;
 var totTat = 0;
-var quantum = 2;
+var quantum;
 
 $(document).ready(function() {
   process = Math.floor(Math.random() * 10) + 1;
+  
+  quantum = Math.floor(Math.random() * 4) + 1;
 
   for (let i = 0; i < process; i++) {
     arrival[i] = i;
@@ -33,6 +35,9 @@ $(document).ready(function() {
       let b = "<span style=\"padding-left: 5px;\">" + burst[i] + "</span>";
       $(".fcfs-bur").append(b);
     }
+    
+    let c = "<span style=\"padding-left: 5px;\">" + quantum + "</span>";
+    $(".fcfs-qua").append(c);
   }
 
   function calcAvg() {
