@@ -66,7 +66,7 @@ canvas {
   font-size: 1rem;
 }
 
-.fcfs-proc, .fcfs-arr, .fcfs-bur, .priority {
+.fcfs-proc, .fcfs-arr, .fcfs-bur, .fcfs-qua, .priority {
   font-size: 1rem;
   margin: 10px;
 }
