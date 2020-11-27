@@ -166,6 +166,34 @@ void printOneTime(int shortDist[], int path[], int s, int d, float tim[]) {
 
 void dijkstra(int k) {
     system("cls");
+    int s, d;
+    if (k == 7) {
+        cout << endl << endl << endl << endl << endl;
+        cout << "\t\t\t" << "ENTER CITIES TO FIND THE SHORTEST PATH" << endl;
+        cout << "\t\t\t" << "SOURCE : ";
+        cin >> s;
+        cout << "\t\t\t" << "DESTINATION : ";
+        cin >> d;
+    }
+    else if (k == 8) {
+        cout << endl << endl << endl << endl << endl;
+        cout << "\t\t\t" << "ENTER STARTING CITY : ";
+        cin >> s;
+    }
+    else if (k == 9) {
+        cout << endl << endl << endl << endl << endl;
+        cout << "\t\t\t" << "ENTER CITIES TO FIND THE TIME TAKEN FOR SHORTEST PATH" << endl;
+        cout << "\t\t\t" << "SOURCE : ";
+        cin >> s;
+        cout << "\t\t\t" << "DESTINATION : ";
+        cin >> d;
+    }
+    else {
+        cout << endl << endl << endl << endl << endl;
+        cout << "\t\t\t" << "ENTER STARTING CITY : ";
+        cin >> s;
+    }
+
     int shortDist[road.v], path[road.v];
     bool visited[road.v];
     float tim[road.v];
@@ -175,8 +203,8 @@ void dijkstra(int k) {
         shortDist[i] = INT_MAX;
         tim[i] = INT_MAX;
     }
-    shortDist[0] = 0;
-    tim[0] = 0;
+    shortDist[s] = 0;
+    tim[s] = 0;
 
     for (int i = 0; i < road.v - 1; i++) {
         int x = minDist(shortDist, visited);
@@ -191,50 +219,16 @@ void dijkstra(int k) {
         }
     }
 
-    /*for (int i = 0; i < road.v; i++) {
-        //visited[i] = false;
-        //path[i] = -1;
-        //shortDist[i] = INT_MAX;
-        //tim[i] = INT_MAX;
-        cout << shortDist[i] << " ";
-    }
-
-    cout << "PRESS ENTER TO CONTINUE";
-    cin.ignore();
-    cin.ignore();*/
-
     if (k == 7) {
-        cout << endl << endl << endl << endl << endl;
-        cout << "\t\t\t" << "ENTER CITIES TO FIND THE SHORTEST PATH" << endl;
-        int s, d;
-        cout << "\t\t\t" << "SOURCE : ";
-        cin >> s;
-        cout << "\t\t\t" << "DESTINATION : ";
-        cin >> d;
         printOnePath(shortDist, path, s, d);
     }
     else if (k == 8) {
-        cout << endl << endl << endl << endl << endl;
-        int s;
-        cout << "\t\t\t" << "ENTER STARTING CITY : ";
-        cin >> s;
         printPath(shortDist, path, s);
     }
     else if (k == 9) {
-        cout << endl << endl << endl << endl << endl;
-        cout << "\t\t\t" << "ENTER CITIES TO FIND THE TIME TAKEN FOR SHORTEST PATH" << endl;
-        int s, d;
-        cout << "\t\t\t" << "SOURCE : ";
-        cin >> s;
-        cout << "\t\t\t" << "DESTINATION : ";
-        cin >> d;
         printOneTime(shortDist, path, s, d, tim);
     }
     else {
-        cout << endl << endl << endl << endl << endl;
-        int s;
-        cout << "\t\t\t" << "ENTER STARTING CITY : ";
-        cin >> s;
         printTime(shortDist, path, s, tim);
     }
 }
